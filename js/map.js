@@ -11,6 +11,7 @@ function initialize() {
   //ADDING LOCATION TYPE + AUTOCOMPLETE TEXTFIELD FEATURE
   var acOptions = {
     types: ['establishment']
+    // types: ['beauty_salon', 'hair_care']
   }
 
   var autocomplete = new google.maps.places.Autocomplete(document.getElementById('autocomplete'),acOptions);
@@ -35,7 +36,8 @@ function initialize() {
     map.setZoom(17);
   }
   marker.setPosition(place.geometry.location);
-  infoWindow.setContent('<div><strong>' + place.name + '</strong><br>');
+  // infoWindow.setContent('<div><strong>' + place.name + '</strong><br>');
+  infoWindow.setContent('<div><a href="details.html">' + place.name + '</a><br>');
   infoWindow.open(map, marker);
   google.maps.event.addListener(marker,'click',function(e){
 
@@ -44,14 +46,6 @@ function initialize() {
     });
   });
 
-  //ADDING WEATHER LAYER
-  var weatherLayer = new google.maps.weather.WeatherLayer({
-    temperatureUnits: google.maps.weather.TemperatureUnit.FAHRENHEIT
-  });
-  weatherLayer.setMap(map);
-
-  var cloudLayer = new google.maps.weather.CloudLayer();
-  cloudLayer.setMap(map);
 }
 
 google.maps.event.addDomListener(window, 'load', initialize);
