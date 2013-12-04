@@ -23,22 +23,43 @@ function initialize() {
   autocomplete.bindTo('bounds',map);
 
   //ADDING A MARKER
-  var markersOptions = {
-  	position: new google.maps.LatLng(37.7831,-122.4039)
-  };
+  // var markersOptions = {
+  // 	position: new google.maps.LatLng(37.7831,-122.4039)
+  // };
 
-  var marker = new google.maps.Marker(markersOptions);
-  marker.setMap(map);
+  var marker = new google.maps.Marker({
+    map: map
+  });
+  // marker.setMap(map);
 
   //ADDING INFO WINDOW
-  var infoWindowOptions = {
-  	content: 'Barbershop Info Window'
+  // var infoWindowOptions = {
+  // 	content: 'Barbershop Info Window'
+  // }
+
+  var infoWindow = new google.maps.InfoWindow();
+
+  // google.maps.event.addListener(marker,'click', function(e){
+  // 	infoWindow.open(map, marker);
+  // });
+
+  google.maps.event.addListener(autocomplete, 'place_changed', function() {
+  infoWindow.close();
+  var place = autocomplete.getPlace();
+  if (place.geometry.viewport) {
+    map.fitBounds(place.geometry.viewport);
+  } else {
+    map.setCenter(place.geometry.location);
+    map.setZoom(17);
   }
+  marker.setPosition(place.geometry.location);
+  infoWindow.setContent('<div><strong>' + place.name + '</strong><br>');
+  infoWindow.open(map, marker);
+  google.maps.event.addListener(marker,'click',function(e){
 
-  var infoWindow = new google.maps.InfoWindow(infoWindowOptions);
+    infoWindow.open(map, marker);
 
-  google.maps.event.addListener(marker,'click', function(e){
-  	infoWindow.open(map, marker);
+    });
   });
 
 }
