@@ -1,0 +1,15 @@
+
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+header {height:45px; position:absolute; top: 0; left: 0; right: 0;z-index:2; background:#dadada; border-bottom:1px solid #c1c1c1; /*box-shadow:0 3px 3px #999999;*/}
+#controls {height:100px; position:absolute; top: 46px; left: 0; right: 0;z-index:2; background:#dadada;}
+#controls a {line-height: 45px; width:49%; display:inline-block; text-align: center; font-weight:normal; font-size:13px;}
+#map{position:absolute; width:100%; height:100%;}
+
+#page {background: #E7E7E7; width: 100%;}
+
+.padding_box {padding:10px;}
+.hidden {display:none;}

@@ -1,0 +1,20 @@
+doctype html
+html
+  head
+    title Slim Examples
+    meta name="keywords" content="template language"
+    meta name="author" content=author
+    javascript:
+      alert('Slim supports embedded javascript!')
+
+  body
+    h1 Header
+
+    #content
+      #map_canvas
+        p my map
+
+    div id="footer"
+      = render 'footer'
+      | Copyright © #{year} #{author}
+          
